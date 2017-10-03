@@ -11,7 +11,7 @@ var frame = 0, // is an animation frame pending?
     setFrame = typeof window === "object" && window.requestAnimationFrame ? window.requestAnimationFrame.bind(window) : function(f) { setTimeout(f, 17); };
 
 export function now() {
-  let ua = window.navigator.userAgent;
+  var ua = window.navigator.userAgent;
   if(ua.indexOf('Edge/') > 0 || ua.indexOf('Trident/') > 0) {
     return clockNow || (window.requestAnimationFrame(clearNow), clockNow = clock.now() + clockSkew);
   }
@@ -109,7 +109,7 @@ function sleep(time) {
     if (interval) interval = clearInterval(interval);
   } else {
     if (!interval) clockLast = clockNow, interval = setInterval(poke, pokeDelay);
-    let ua = window.navigator.userAgent;
+    var ua = window.navigator.userAgent;
     if(ua.indexOf('Edge/') > 0 || ua.indexOf('Trident/') > 0) {
       frame = 1, window.requestAnimationFrame(wake);
     } else {
